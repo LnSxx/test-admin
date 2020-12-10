@@ -11,7 +11,8 @@ import {
     TextInput,
     AutocompleteInput,
     Filter,
-    DateInput
+    DateInput,
+    PasswordInput
 } from 'react-admin';
 import {
     required,
@@ -45,7 +46,6 @@ export const UserList = props => (
     <List filters={<UserFilter />} {...props}>
         <Datagrid>
             <TextField source="email"/>
-            <TextField source="password" />
             <TextField source="phone"/>
             <TextField source="name"/>
             <TextField source="status"/>
@@ -60,7 +60,7 @@ export const UserEdit = props => (
     <Edit {...props}>
         <SimpleForm>
                 <TextInput source="email" validate={validateEmail}/>
-                <TextInput source="password" validate={validatePassword}/>
+                <PasswordInput source="password" validate={validatePassword} />
                 <TextInput source="phone" validate={validatePhone}/>
                 <TextInput source="name" validate={validateName}/>
                 <AutocompleteInput source="status" validate={validateRequired} choices={[
@@ -68,7 +68,7 @@ export const UserEdit = props => (
                     { id: 'partner', name: 'Partner' },
                     { id: 'admin', name: 'Admin' },
                 ]} />
-                <DateInput source="last_edit" validate={validateRequired} options={{ format: 'DD/MM/YYYY' }} defaultValue={new Date()} />
+                <DateInput source="last_edit" validate={validateRequired} disabled options={{ format: 'DD/MM/YYYY' }} defaultValue={new Date()} />
         </SimpleForm>
     </Edit>
 );
@@ -77,7 +77,7 @@ export const UserCreate = props => (
        <Create {...props}>
            <SimpleForm>
                 <TextInput source="email" validate={validateEmail}/>
-                <TextInput source="password" validate={validatePassword}/>
+                <PasswordInput source="password" validate={validatePassword} />
                 <TextInput source="phone" validate={validatePhone}/>
                 <TextInput source="name" validate={validateName}/>
                 <AutocompleteInput source="status" validate={validateRequired} choices={[
@@ -85,7 +85,7 @@ export const UserCreate = props => (
                     { id: 'partner', name: 'Partner' },
                     { id: 'admin', name: 'Admin' },
                 ]} />
-                <DateInput source="created_at" validate={validateRequired} defaultValue={new Date()} />
+                <DateInput source="created_at" disabled validate={validateRequired} defaultValue={new Date()} />
             </SimpleForm>
             
         </Create>
