@@ -23,9 +23,10 @@ import {
 
 //INPUT VALIDATION
 const validateName = [required(), minLength(2), maxLength(45)];
-const validateEmail = email();
+const validateEmail = [email(), required()];
 const validatePhone = [number(), required()];
 const validatePassword = [required(), minLength(4)];
+const validateRequired = required();
 
 
 const UserFilter = (props) => (
@@ -62,12 +63,12 @@ export const UserEdit = props => (
                 <TextInput source="password" validate={validatePassword}/>
                 <TextInput source="phone" validate={validatePhone}/>
                 <TextInput source="name" validate={validateName}/>
-                <AutocompleteInput source="status" choices={[
+                <AutocompleteInput source="status" validate={validateRequired} choices={[
                     { id: 'client', name: 'Client' },
                     { id: 'partner', name: 'Partner' },
                     { id: 'admin', name: 'Admin' },
                 ]} />
-                <DateInput source="last_edit" options={{ format: 'DD/MM/YYYY' }} defaultValue={new Date()} />
+                <DateInput source="last_edit" validate={validateRequired} options={{ format: 'DD/MM/YYYY' }} defaultValue={new Date()} />
         </SimpleForm>
     </Edit>
 );
@@ -79,14 +80,13 @@ export const UserCreate = props => (
                 <TextInput source="password" validate={validatePassword}/>
                 <TextInput source="phone" validate={validatePhone}/>
                 <TextInput source="name" validate={validateName}/>
-                <AutocompleteInput source="status" choices={[
+                <AutocompleteInput source="status" validate={validateRequired} choices={[
                     { id: 'client', name: 'Client' },
                     { id: 'partner', name: 'Partner' },
                     { id: 'admin', name: 'Admin' },
                 ]} />
-                <DateInput source="created_at" defaultValue={new Date()} />
+                <DateInput source="created_at" validate={validateRequired} defaultValue={new Date()} />
             </SimpleForm>
             
         </Create>
     );
-    
