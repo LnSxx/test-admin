@@ -49,7 +49,7 @@ export const UserList = props => (
             <TextField source="phone"/>
             <TextField source="name"/>
             <TextField source="status"/>
-            <TextField source="created_at"/>
+            <TextField source="created_at">sefse</TextField>
             <TextField source="last_edit" />
             <EditButton />
         </Datagrid>
@@ -68,7 +68,8 @@ export const UserEdit = props => (
                     { id: 'partner', name: 'Partner' },
                     { id: 'admin', name: 'Admin' },
                 ]} />
-                <DateInput source="last_edit" validate={validateRequired} disabled options={{ format: 'DD/MM/YYYY' }} defaultValue={new Date()} />
+                <DateInput source="last_edit" validate={validateRequired} disabled initialValue={new Date().toLocaleDateString()}/> 
+                
         </SimpleForm>
     </Edit>
 );
@@ -84,9 +85,8 @@ export const UserCreate = props => (
                     { id: 'client', name: 'Client' },
                     { id: 'partner', name: 'Partner' },
                     { id: 'admin', name: 'Admin' },
-                ]} />
-                <DateInput source="created_at" disabled validate={validateRequired} defaultValue={new Date()} />
-            </SimpleForm>
-            
+                ]} />  
+                <DateInput source="created_at"  validate={validateRequired} disabled initialValue={new Date().toLocaleDateString()}/>        
+         </SimpleForm>            
         </Create>
     );
